@@ -1,0 +1,153 @@
+{% extends 'base.html' %} 
+{% block title %}Admin Dashboard Add Product {% endblock title %}
+{% block body %}
+<div class="container mt-3">
+
+  <h3 class="text-center">Welcome to Dashboard {{user.first_name}}</h3>
+<br>
+<div class="row">
+
+<div class="col-md-2">
+    <ul class="list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+         <a href="http://127.0.0.1:8000/admin/authapp/user/">Users</a>
+          <span class="badge bg-primary rounded-pill">14</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <a href="/dashboard">Products</a>
+          <span class="badge bg-primary rounded-pill">2</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <a href="http://127.0.0.1:8000/admin/ekartapp/orders/">Orders</a>
+          <span class="badge bg-primary rounded-pill">1</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <a href="http://127.0.0.1:8000/admin/ekartapp/orderupdate/">Orders Update</a>
+          <span class="badge bg-primary rounded-pill">1</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <a href="http://127.0.0.1:8000/admin/ekartapp/contact/">Contact</a>
+          <span class="badge bg-primary rounded-pill">1</span>
+        </li>
+      </ul>
+
+</div>
+<div class="col-md-10">
+{% include "messages.html" %}
+<h3 class="text-dark bg-primary text-white p-2">Add Product</h3>
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <a type="button" href="/dashboard" class="btn btn-outline-dark m-2"
+      >Back<i class="fa-solid fa-backward"></i></a>
+  </div>
+  
+  <form action="/dashboard/addProduct" method="post" enctype="multipart/form-data">{% csrf_token %}
+   
+    <br />
+
+    <label for="name">Product Name</label>
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control p-2"
+        id="pname"
+        name="pname"
+        required
+      />
+    </div>
+    <label for="name">Product Image</label>
+    <div class="form-group">
+      <input
+        type="file"
+        class="form-control p-2"
+        id="pimage"
+        name="pimage"
+        required
+      />
+    </div>
+    <label for="email">Product Category</label>
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control p-2"
+        id="pcategory"
+        name="pcategory"
+   
+        required
+      />
+    </div>
+    <label for="email">Product Sub Category</label>
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control p-2"
+        id="pscategory"
+        name="pscategory"
+   
+        required
+      />
+    </div>
+    <label for="pass1">Product Description</label>
+    <div class="form-group">
+      <textarea
+        type="text"
+        class="form-control p-2"
+        id="pdesc"
+        name="pdesc"
+        required> </textarea>
+    </div>
+
+    <label for="pnumber">Product Price</label>
+    <div class="form-group">
+      <input
+        type="number"
+        class="form-control p-2"
+        id="pprice"
+        name="pprice"
+        required
+      />
+    </div>
+    <label for="pnumber">Product Stock</label>
+    <div class="form-group">
+      <input
+        type="number"
+        class="form-control p-2"
+        id="pstock"
+        name="pstock"
+        required
+      />
+    </div>
+    <label for="pnumber">Product Actual Price</label>
+    <div class="form-group">
+      <input
+        type="number"
+        class="form-control p-2"
+        id="paprice"
+        name="paprice"
+        required
+      />
+    </div>
+    <br />
+    <button type="submit" class="btn btn-dark">Add</button>
+
+   
+    <br />
+    <br>
+<br>
+<br>
+</div>
+
+
+
+
+
+</div>
+
+
+
+
+
+</div>
+
+
+</div>
+{% endblock body %}

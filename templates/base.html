@@ -1,0 +1,117 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ecommerce - {% block title %}
+    
+    {% endblock title %}</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">Ecommerce</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor02">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="/"><i class="fa-solid fa-house"></i> Home
+                <span class="visually-hidden">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/about"><i class="fa-solid fa-address-card"></i> About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/contact"><i class="fa-solid fa-address-book"></i> Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/checkout"><i class="fa-solid fa-cart-shopping"></i> Checkout</a>
+            </li>
+
+            {% if request.user.is_authenticated %}
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Welcome {{user.first_name}}</a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="/profile"><i class="fa-solid fa-cart-shopping"></i> My Orders</a>
+                <a class="dropdown-item" href="/authapp/logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+          
+              </div>
+            </li>
+            
+            {% else %}
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="/auth/signup" role="button" aria-haspopup="true" aria-expanded="false">Signup</a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="/authapp/signup"><i class="fa-solid fa-user-plus"></i> Signup</a>
+                <a class="dropdown-item" href="/authapp/login"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
+  
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/authapp/request-reset-email"><i class="fa-solid fa-lock"></i> Reset Password</a>
+              </div>
+            </li>
+            {% endif %}
+
+            <button type="button" class="nav-link scrollto bg-success  text-white" id="popcart" data-container="body" data-toggle="popover" data-placement="bottom" data-html="true" ><i class="fa-solid fa-cart-shopping"></i>  Cart (<span id="cart">0</span>)
+            </button>
+<span>.</span>
+
+            {% if user.is_superuser %}
+            <a href="/dashboard" class="btn btn-success"><i class="fa-solid fa-admin"></i> Admin</a>
+            {% endif %}
+
+
+            
+          </ul>
+          <form class="d-flex" action="/search" method="get">
+            <input name="search" class="form-control me-sm-2" type="search" placeholder="Search">
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    {% block body %}
+    
+    {% endblock body %}
+
+    <div class="container">
+
+        <footer>
+
+            <div class="row bg-dark" id="footer">
+              <div class="col-md-4"></div>
+              <div class="col-md-4">
+            
+                <h6 class="text-white bg-dark m-2">Designed & Developed by Sharan KK</h6>
+                
+              </div>
+              <div class="col-md-4"></div>
+            </div>
+            
+            
+            
+        </footer>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
+  </body>
+</html>

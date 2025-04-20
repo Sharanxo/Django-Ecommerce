@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% block title %}
+Dashboard
+{% endblock title %}
+{% block body %}
+<div class="container mt-3">
+
+  <h3 class="text-center">Welcome to Dashboard {{user.first_name}}</h3>
+<br>
+<div class="row">
+
+<div class="col-md-2">
+    <ul class="list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+         <a href="http://127.0.0.1:8000/admin/auth/user/">Users</a>
+          <span class="badge bg-primary rounded-pill">14</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <a href="/dashboard">Products</a>
+          <span class="badge bg-primary rounded-pill">2</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <a href="http://127.0.0.1:8000/admin/ekartapp/orders/">Orders</a>
+          <span class="badge bg-primary rounded-pill">1</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <a href="http://127.0.0.1:8000/admin/ekartapp/orderupdate/">Orders Update</a>
+          <span class="badge bg-primary rounded-pill">1</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <a href="http://127.0.0.1:8000/admin/ekartapp/contact/">Contact</a>
+          <span class="badge bg-primary rounded-pill">1</span>
+        </li>
+      </ul>
+
+</div>
+<div class="col-md-10">
+{% include "messages.html" %}
+<h3 class="text-dark bg-primary text-white p-2">Products</h3>
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <a type="button" href="/dashboard/addProduct" class="btn btn-outline-success m-2"
+      >Add Products<i class="fa-solid fa-pen-to-square"></i
+    ></a>
+    </div>
+    <h3 class="text-dark bg-light text-dark text-center p-2">Total Products :  {{total}}</h3>
+
+    <table class="table table-dark table-striped table-sm">
+        <thead>
+          <tr>
+            <th scope="col">Product ID</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Product Image</th>
+            <th scope="col">Category</th>
+            <th scope="col">Sub Category</th>
+            <th scope="col">Product Price</th>
+            <th scope="col">Product Stock</th>
+            <th scope="col">Product Description</th>
+            <th scope="col">Update</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+    {% for i in prods %}
+    <tr>
+
+        <td>{{i.id}}</td>
+        <td>{{i.product_name}}</td>
+        <td><img src="{{i.image.url}}" width="50" alt="" /></td>
+        <td>{{i.category}}</td>
+        <td>{{i.subcategory}}</td>
+        <td>{{i.price}}</td>
+        <td>{{i.stock}}</td>
+        <td>{{i.desc}}</td>
+
+        <td>
+            <a
+              type="button"
+              href="/dashboard/editProduct/{{i.id}}"
+              class="btn btn-outline-light"
+              ><i class="fa-solid fa-pen-to-square"></i
+            ></a>
+        </td>
+
+        <td>
+            <a
+              type="button"
+              href="/dashboard/deleteProduct/{{i.id}}"
+              class="btn btn-outline-light"
+              ><i class="fa-solid fa-trash"></i
+            ></a>
+        </td>
+
+
+    </tr>
+    {% endfor %}
+
+      
+
+    </tbody>
+</table>
+<br>
+<br>
+<br>
+
+</div>
+
+
+
+
+
+</div>
+
+
+</div>
+{% endblock body %}
